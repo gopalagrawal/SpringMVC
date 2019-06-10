@@ -27,7 +27,11 @@
 		<br> <input type=submit>
 	</form>
 
-
+<p>
+Server Version: <%= application.getServerInfo() %><br>
+Servlet Version: <%= application.getMajorVersion() %>.<%= application.getMinorVersion() %><br>
+JSP Version: <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %> <br>
+<p>
 
 	<script>
 		$(document).ready(function() {

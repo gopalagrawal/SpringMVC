@@ -16,17 +16,20 @@ public class AddController {
 	@RequestMapping("/add")
 	public ModelAndView add(HttpServletRequest request, HttpServletResponse response) {
 		
-		//unmarshall the inputs
+		//un-marshal the inputs
 		int i = Integer.parseInt(request.getParameter("t1"));
 		int j = Integer.parseInt(request.getParameter("t2"));
 		
-		//off-load the buisness logic to our service layer classes. . 
+		//off-load the business logic to our service layer classes. . 
 		AddService as = new AddService();
 		int k = as.add(i, j); 
 		
 		//package the result into a model-view object and send to a certain view. 
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("displayResult.jsp");
+		
+		mv.setViewName("displayResult");  
+		//New: ProjectConfig will define the extensions ".jsp" for view files.
+		
 		mv.addObject("result", k);
 		
 		
@@ -39,14 +42,14 @@ public class AddController {
 							@RequestParam("t2") int j, 
 							HttpServletRequest request, HttpServletResponse response) {
 		
-		//@RequestParam will automatically do:  i=t1,  j=t2. 
+		//@RequestParam will automatically do: i=t1, j=t2. No need for parseInteger. 
 		
-		//buisness logic ... should ideally offload to a service class. 
+		//business logic ... should ideally off-load to a service class. 
 		int k = i - j;
 		
 		//package the result into a model-view object and send to a certain view. 
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("displayResult.jsp");
+		mv.setViewName("displayResult");
 		mv.addObject("result", k);
 		
 		
